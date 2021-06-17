@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sckan_app/app/task_form.dart';
-import 'package:sckan_app/app/view/login.dart';
+import 'package:sckan_app/app/view/task_form.dart';
 import 'package:sckan_app/app/view/project_form.dart';
 import 'package:sckan_app/app/view/project_list.dart';
 import 'package:sckan_app/app/view/task_list.dart';
-import 'package:sckan_app/app/view/user_form.dart';
 
 class App extends StatelessWidget {
   static const LOGIN = '/';
@@ -22,8 +20,6 @@ class App extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        LOGIN: (context) => Login(),
-        USER_FORM: (context) => UserForm(),
         PROJECT_LIST: (context) => ProjectList(),
         PROJECT_FORM: (context) => ProjectForm(),
         TASK_LIST: (context) => TaskList(),
