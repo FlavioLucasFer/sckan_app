@@ -1,20 +1,21 @@
 class Task {
   int id;
+  String name;
   String customIdentifier;
   String description;
   String active;
-  late DateTime createdAt;
-  late DateTime updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
   int projectId;
 
   Task({
     required this.id,
-    this.customIdentifier = '',
-    this.description = '',
-    this.active = 'Y',
+    required this.name,
+    required this.customIdentifier,
+    required this.description,
+    required this.active,
+    required this.createdAt,
+    required this.updatedAt,
     required this.projectId,
-  }) {
-    this.createdAt = DateTime.now();
-    this.updatedAt = DateTime.now();
-  }
+  });
 }

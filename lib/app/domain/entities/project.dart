@@ -4,17 +4,16 @@ class Project {
   String description;
   String cloneLink;
   String active;
-  late DateTime createAt;
-  late DateTime updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   Project({
     required this.id,
     required this.name,
-    this.description = '',
-    this.cloneLink = '',
-    this.active = 'Y',
-  }) {
-    this.createAt = DateTime.now();
-    this.updatedAt = DateTime.now();
-  }
+    required this.description,
+    required this.cloneLink,
+    required this.active,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 }
