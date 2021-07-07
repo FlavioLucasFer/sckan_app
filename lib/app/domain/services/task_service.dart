@@ -28,7 +28,7 @@ class TaskService {
     }
   }
 
-  validateDeacription(String description) {
+  validateDescription(String description) {
     var max = 500;
 
     if (description.length > max) {

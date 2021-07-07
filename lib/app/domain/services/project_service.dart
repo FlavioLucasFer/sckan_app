@@ -36,7 +36,7 @@ class ProjectService {
     }
   }
 
-  validateDeacription(String description) {
+  validateDescription(String description) {
     var max = 255;
 
     if (description.length > max) {
