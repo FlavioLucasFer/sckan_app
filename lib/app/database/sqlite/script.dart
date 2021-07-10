@@ -1,6 +1,6 @@
 final createProjectTable = '''
   CREATE TABLE project (
-    id INT PRIMARY KEY
+    id INTEGER NOT NULL PRIMARY KEY
     ,name VARCHAR(255) NOT NULL
     ,description VARCHAR(500) 
     ,clone_link VARCHAR(255)
@@ -12,7 +12,7 @@ final createProjectTable = '''
 
 final createTaskTable = '''
   CREATE TABLE (
-    id INT PRIMARY KEY
+    id INTEGER NOT NULL PRIMARY KEY
     ,name VARCHAR(255) NOT NULL
     ,custom_identifier VARCHAR(255)
     ,description VARCHAR(255)

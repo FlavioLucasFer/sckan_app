@@ -1,13 +1,98 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:sckan_app/app/app.dart';
+import 'package:sckan_app/app/domain/entities/task.dart';
+import 'package:sckan_app/app/view/task_list_back.dart';
 
 class TaskList extends StatelessWidget {
+  final _taskListBack = TaskListBack();
+
+  Widget editButton(Function onPressed) {
+    return IconButton(
+      onPressed: onPressed(),
+      icon: Icon(Icons.edit),
+      color: Colors.lightBlue,
+    );
+  }
+
+  Widget removeButton(BuildContext context, Function remove) {
+    return IconButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text("Delete task"),
+            content: Text("Are you sure you want to delete this task?"),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("No")),
+              TextButton(
+                  onPressed: () {
+                    remove();
+                  },
+                  child: Text("Yes")),
+            ],
+          ),
+        );
+      },
+      icon: Icon(Icons.delete),
+      color: Colors.red,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tarefas'),
+        title: Text('Your tasks'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(App.TASK_FORM);
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
-      body: ListView(),
+      body: Observer(builder: (context) {
+        return FutureBuilder(
+          future: _taskListBack.list,
+          builder: (context, future) {
+            if (!future.hasData)
+              return CircularProgressIndicator();
+            else {
+              List<Task> tasks = future.data as List<Task>;
+
+              return ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, i) {
+                    var task = tasks[i];
+                    return ListTile(
+                      title: Text(task.name),
+                      subtitle: Text(task.description),
+                      trailing: Container(
+                        width: 100,
+                        child: Row(
+                          children: [
+                            editButton(() {
+                              _taskListBack.goToForm(context, task);
+                            }),
+                            removeButton(context, () {
+                              _taskListBack.remove(task.id);
+                              Navigator.of(context).pop();
+                            })
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            }
+          },
+        );
+      }),
     );
   }
 }
