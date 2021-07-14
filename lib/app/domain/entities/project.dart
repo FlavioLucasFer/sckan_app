@@ -3,17 +3,14 @@ class Project {
   String name;
   String description;
   String cloneLink;
-  String active;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String active = 'Y';
+  DateTime createdAt = DateTime.now();
+  DateTime updatedAt = DateTime.now();
 
   Project({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.cloneLink,
-    required this.active,
-    required this.createdAt,
-    required this.updatedAt,
+    this.id = -1,
+    this.name = '',
+    this.description = '',
+    this.cloneLink = '',
   });
 }
