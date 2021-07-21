@@ -36,10 +36,10 @@ class TaskService {
     }
   }
 
-  validateCloneLink(String cloneLink) {
+  validateCustomIdentifier(String customIdenfier) {
     var max = 255;
 
-    if (cloneLink.length > max) {
+    if (customIdenfier.length > max) {
       throw DomainLayerException('Maximum characters exceeded');
     }
   }

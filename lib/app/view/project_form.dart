@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sckan_app/app/view/project_form_back.dart';
 
 class ProjectForm extends StatelessWidget {
+  final _form = GlobalKey<FormState>();
+
   Widget nameField(ProjectFormBack back) {
     return TextFormField(
       initialValue: back.project.name,
+      onSaved: (newValue) => back.project.name = newValue,
+      validator: (value) => back.validateName(value!),
       decoration: InputDecoration(
         labelText: 'Name',
       ),
@@ -14,6 +18,8 @@ class ProjectForm extends StatelessWidget {
   Widget descriptionField(ProjectFormBack back) {
     return TextFormField(
       initialValue: back.project.description,
+      onSaved: (newValue) => back.project.description = newValue,
+      validator: (value) => back.validateDescription(value!),
       decoration: InputDecoration(
         labelText: 'Description',
       ),
@@ -23,6 +29,8 @@ class ProjectForm extends StatelessWidget {
   Widget cloneLinkField(ProjectFormBack back) {
     return TextFormField(
       initialValue: back.project.cloneLink,
+      onSaved: (newValue) => back.project.cloneLink,
+      validator: (value) => back.validateCloneLink(value!),
       decoration: InputDecoration(
         labelText: 'Clone link',
       ),
@@ -37,7 +45,14 @@ class ProjectForm extends StatelessWidget {
         title: Text('New project'),
         actions: [
           IconButton(
-            onPressed: null,
+            onPressed: () {
+              _form.currentState!.validate();
+              _form.currentState!.save();
+              if (_back.isValid) {
+                _back.save();
+                Navigator.of(context).pop();
+              }
+            },
             icon: Icon(Icons.save),
           ),
         ],
@@ -45,6 +60,7 @@ class ProjectForm extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Form(
+          key: _form,
           child: Column(
             children: [
               nameField(_back),

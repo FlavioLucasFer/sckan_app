@@ -18,9 +18,6 @@ class ProjectDAOImpl implements ProjectDAO {
         name: line['name'],
         description: line['description'],
         cloneLink: line['clone_link'],
-        active: line['active'],
-        createdAt: line['created_at'],
-        updatedAt: line['updated_at'],
       );
     });
 

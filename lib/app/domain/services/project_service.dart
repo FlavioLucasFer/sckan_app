@@ -28,18 +28,18 @@ class ProjectService {
     }
   }
 
-  validateCustomIdentifier(String customIdenfier) {
-    var max = 255;
-
-    if (customIdenfier.length > max) {
-      throw DomainLayerException('Maximum characters exceeded');
-    }
-  }
-
   validateDescription(String description) {
     var max = 255;
 
     if (description.length > max) {
+      throw DomainLayerException('Maximum characters exceeded');
+    }
+  }
+
+  validateCloneLink(String cloneLink) {
+    var max = 255;
+
+    if (cloneLink.length > max) {
       throw DomainLayerException('Maximum characters exceeded');
     }
   }

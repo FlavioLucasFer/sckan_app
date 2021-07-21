@@ -18,9 +18,6 @@ class TaskDAOImpl implements TaskDAO {
         name: line['name'],
         customIdentifier: line['custom_identifier'],
         description: line['description'],
-        active: line['active'],
-        createdAt: line['created_at'],
-        updatedAt: line['updated_at'],
         projectId: line['project_id'],
       );
     });
