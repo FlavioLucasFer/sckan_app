@@ -30,6 +30,10 @@ abstract class _ProjectListBack with Store {
         .then(refreshList);
   }
 
+  goToDetails(BuildContext context, Project project) {
+    Navigator.of(context).pushNamed(App.PROJECT_DETAILS, arguments: project);
+  }
+
   remove(int id) {
     _service.remove(id);
     refreshList();

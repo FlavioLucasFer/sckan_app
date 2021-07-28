@@ -30,6 +30,10 @@ abstract class _TaskListBack with Store {
         .then(refreshList);
   }
 
+  goToDetails(BuildContext context, Task task) {
+    Navigator.of(context).pushNamed(App.TASK_DETAILS, arguments: task);
+  }
+
   remove(int id) {
     _service.remove(id);
     refreshList();

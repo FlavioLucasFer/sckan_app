@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:sckan_app/app/app.dart';
 import 'package:sckan_app/app/domain/entities/task.dart';
 import 'package:sckan_app/app/view/task_list_back.dart';
 
@@ -51,7 +50,7 @@ class TaskList extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(App.TASK_FORM);
+              _taskListBack.goToForm(context);
             },
             icon: Icon(Icons.add),
           ),
@@ -73,6 +72,9 @@ class TaskList extends StatelessWidget {
                     return ListTile(
                       title: Text(task.name),
                       subtitle: Text(task.description),
+                      onTap: () {
+                        _taskListBack.goToDetails(context, task);
+                      },
                       trailing: Container(
                         width: 100,
                         child: Row(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:sckan_app/app/app.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/view/project_list_back.dart';
 
@@ -51,7 +50,7 @@ class ProjectList extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(App.PROJECT_FORM);
+              _projectListBack.goToForm(context);
             },
             icon: Icon(Icons.add),
           ),
@@ -73,6 +72,9 @@ class ProjectList extends StatelessWidget {
                     return ListTile(
                       title: Text(project.name),
                       subtitle: Text(project.description),
+                      onTap: () {
+                        _projectListBack.goToDetails(context, project);
+                      },
                       trailing: Container(
                         width: 100,
                         child: Row(

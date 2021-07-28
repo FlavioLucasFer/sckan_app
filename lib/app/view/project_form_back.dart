@@ -1,14 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobx/mobx.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/domain/services/project_service.dart';
 
-part 'project_form_back.g.dart';
-
-class ProjectFormBack = _ProjectFormBack with _$ProjectFormBack;
-
-abstract class _ProjectFormBack with Store {
+class ProjectFormBack {
   var project;
   var _service = GetIt.I.get<ProjectService>();
   var _nameIsValid = false;
@@ -17,7 +12,7 @@ abstract class _ProjectFormBack with Store {
 
   bool get isValid => _nameIsValid && _descriptionIsValid && _cloneLinkIsValid;
 
-  _ProjectFormBack(BuildContext context) {
+  ProjectFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context)!.settings.arguments;
     project = (parameter == null) ? Project() : parameter;
   }
