@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:sckan_app/app/domain/entities/task.dart';
 import 'package:sckan_app/app/view/task_list_back.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TaskList extends StatelessWidget {
   final _taskListBack = TaskListBack();
@@ -53,6 +54,21 @@ class TaskList extends StatelessWidget {
               _taskListBack.goToForm(context);
             },
             icon: Icon(Icons.add),
+          ),
+          IconButton(
+            onPressed: () async {
+              await canLaunch('tel:999999999')
+                  ? await launch('tel:999999999')
+                  : showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Alert!'),
+                          content: Text('Compatible App not found.'),
+                        );
+                      });
+            },
+            icon: Icon(Icons.phone),
           ),
         ],
       ),
