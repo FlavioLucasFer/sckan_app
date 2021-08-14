@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "209758767013",
+    "project_id": "sckan-6ce1b",
+    "storage_bucket": "sckan-6ce1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:209758767013:android:5f60ea483df10e40c90a4c",
+        "android_client_info": {
+          "package_name": "br.com.flavio.sckan_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "209758767013-5flqkqn6t32a80t2vnnvnhpkdgldbtp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvrNTw-5SVl445Nu3mDRU03N3Hg8kia20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "209758767013-5flqkqn6t32a80t2vnnvnhpkdgldbtp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

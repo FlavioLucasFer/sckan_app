@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:get_it/get_it.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/domain/exception/domain_layer_exception.dart';
@@ -7,15 +9,15 @@ class ProjectService {
   var _dao = GetIt.I.get<ProjectDAO>();
 
   save(Project project) {
-    _dao.save(project);
+    this._dao.save(project);
   }
 
-  remove(int id) {
-    _dao.remove(id);
+  remove(dynamic id) {
+    this._dao.remove(id);
   }
 
-  find() {
-    _dao.find();
+  Future<List<Project>> find() {
+    return this._dao.find();
   }
 
   validadeName(String name) {

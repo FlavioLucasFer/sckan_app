@@ -1,10 +1,13 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/domain/services/project_service.dart';
 
 class ProjectFormBack {
-  var project;
+  BuildContext context;
+  Project project;
   var _service = GetIt.I.get<ProjectService>();
   var _nameIsValid = false;
   var _descriptionIsValid = false;
@@ -12,8 +15,8 @@ class ProjectFormBack {
 
   bool get isValid => _nameIsValid && _descriptionIsValid && _cloneLinkIsValid;
 
-  ProjectFormBack(BuildContext context) {
-    var parameter = ModalRoute.of(context)!.settings.arguments;
+  ProjectFormBack(this.context) {
+    var parameter = ModalRoute.of(context).settings.arguments;
     project = (parameter == null) ? Project() : parameter;
   }
 
@@ -21,7 +24,7 @@ class ProjectFormBack {
     await _service.save(project);
   }
 
-  String? validateName(String name) {
+  String validateName(String name) {
     try {
       _service.validadeName(name);
       _nameIsValid = true;
@@ -32,7 +35,7 @@ class ProjectFormBack {
     }
   }
 
-  String? validateDescription(String description) {
+  String validateDescription(String description) {
     try {
       _service.validateDescription(description);
       _descriptionIsValid = true;
@@ -43,7 +46,7 @@ class ProjectFormBack {
     }
   }
 
-  String? validateCloneLink(String cloneLink) {
+  String validateCloneLink(String cloneLink) {
     try {
       _service.validateCloneLink(cloneLink);
       _cloneLinkIsValid = true;

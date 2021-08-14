@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:sckan_app/app/view/project_details.dart';
 import 'package:sckan_app/app/view/task_details.dart';
@@ -7,9 +9,7 @@ import 'package:sckan_app/app/view/project_list.dart';
 import 'package:sckan_app/app/view/task_list.dart';
 
 class App extends StatelessWidget {
-  static const LOGIN = '/';
-  static const USER_FORM = 'user-form';
-  static const PROJECT_LIST = 'project-list';
+  static const PROJECT_LIST = '/';
   static const PROJECT_DETAILS = 'project-details';
   static const PROJECT_FORM = 'project-form';
   static const TASK_LIST = 'task-list';

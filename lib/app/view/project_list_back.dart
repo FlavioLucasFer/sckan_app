@@ -1,3 +1,5 @@
+//@dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
@@ -13,7 +15,7 @@ abstract class _ProjectListBack with Store {
   var _service = GetIt.I.get<ProjectService>();
 
   @observable
-  late Future<List<Project>> list;
+  Future<List<Project>> list;
 
   @action
   refreshList([dynamic value]) {
@@ -24,7 +26,7 @@ abstract class _ProjectListBack with Store {
     refreshList();
   }
 
-  goToForm(BuildContext context, [Project? project]) {
+  goToForm(BuildContext context, [Project project]) {
     Navigator.of(context)
         .pushNamed(App.PROJECT_FORM, arguments: project)
         .then(refreshList);
@@ -34,7 +36,7 @@ abstract class _ProjectListBack with Store {
     Navigator.of(context).pushNamed(App.PROJECT_DETAILS, arguments: project);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     _service.remove(id);
     refreshList();
   }

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sckan_app/app/domain/entities/task.dart';
@@ -13,7 +15,7 @@ class TaskFormBack {
   bool get isValid => _nameIsValid && _descriptionIsValid && _customIdentifier;
 
   TaskFormBack(BuildContext context) {
-    var parameter = ModalRoute.of(context)!.settings.arguments;
+    var parameter = ModalRoute.of(context).settings.arguments;
     task = (parameter == null) ? Task() : parameter;
   }
 
@@ -21,7 +23,7 @@ class TaskFormBack {
     await _service.save(task);
   }
 
-  String? validateName(String name) {
+  String validateName(String name) {
     try {
       _service.validadeName(name);
       _nameIsValid = true;
@@ -32,7 +34,7 @@ class TaskFormBack {
     }
   }
 
-  String? validateDescription(String description) {
+  String validateDescription(String description) {
     try {
       _service.validateDescription(description);
       _descriptionIsValid = true;
@@ -43,7 +45,7 @@ class TaskFormBack {
     }
   }
 
-  String? validateCustomIdentifier(String customIdentifier) {
+  String validateCustomIdentifier(String customIdentifier) {
     try {
       _service.validateCustomIdentifier(customIdentifier);
       _customIdentifier = true;

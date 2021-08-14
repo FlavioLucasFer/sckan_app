@@ -1,10 +1,12 @@
+// @dart=2.9
+
 import 'package:sckan_app/app/database/sqlite/connection.dart';
 import 'package:sckan_app/app/domain/entities/task.dart';
 import 'package:sckan_app/app/domain/interfaces/task_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TaskDAOImpl implements TaskDAO {
-  late Database _db;
+  Database _db;
 
   @override
   Future<List<Task>> find() async {
@@ -26,7 +28,7 @@ class TaskDAOImpl implements TaskDAO {
   }
 
   @override
-  remove(int id) async {
+  remove(dynamic id) async {
     this._db = await Connection.get();
     this._db.rawDelete('DELETE FROM task WHERE id = ?;', [id]);
   }
@@ -68,7 +70,7 @@ class TaskDAOImpl implements TaskDAO {
   }
 
   @override
-  inactivate(int id) async {
+  inactivate(dynamic id) async {
     this._db = await Connection.get();
     this._db.rawUpdate("UPDATE task SET active = 'N' WHERE id = ?;", [id]);
   }

@@ -1,18 +1,20 @@
+// @dart=2.9
+
 class Task {
-  int id;
+  dynamic id;
   String name;
   String customIdentifier;
   String description;
   String active = 'Y';
-  DateTime createdAt = DateTime.now();
-  DateTime updatedAt = DateTime.now();
+  // DateTime createdAt = DateTime.now();
+  // DateTime updatedAt = DateTime.now();
   int projectId;
 
   Task({
-    this.id = -1,
-    this.name = '',
-    this.customIdentifier = '',
-    this.description = '',
-    this.projectId = -1,
+    this.id,
+    this.name,
+    this.customIdentifier,
+    this.description,
+    this.projectId,
   });
 }

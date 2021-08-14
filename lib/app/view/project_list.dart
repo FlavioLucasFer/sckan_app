@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
@@ -8,7 +10,7 @@ class ProjectList extends StatelessWidget {
 
   Widget editButton(Function onPressed) {
     return IconButton(
-      onPressed: onPressed(),
+      onPressed: onPressed,
       icon: Icon(Icons.edit),
       color: Colors.lightBlue,
     );
@@ -63,7 +65,7 @@ class ProjectList extends StatelessWidget {
             if (!future.hasData)
               return CircularProgressIndicator();
             else {
-              List<Project> projects = future.data as List<Project>;
+              List<Project> projects = future.data;
 
               return ListView.builder(
                   itemCount: projects.length,

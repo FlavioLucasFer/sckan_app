@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:sckan_app/app/view/task_form_back.dart';
 
@@ -8,7 +10,7 @@ class TaskForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.task.name,
       onSaved: (newValue) => back.task.name = newValue,
-      validator: (value) => back.validateName(value!),
+      validator: (value) => back.validateName(value),
       decoration: InputDecoration(
         labelText: 'Name',
       ),
@@ -19,7 +21,7 @@ class TaskForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.task.customIdentifier,
       onSaved: (newValue) => back.task.customIdentifier = newValue,
-      validator: (value) => back.validateCustomIdentifier(value!),
+      validator: (value) => back.validateCustomIdentifier(value),
       decoration: InputDecoration(
         labelText: 'Custom identifier',
       ),
@@ -30,7 +32,7 @@ class TaskForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.task.description,
       onSaved: (newValue) => back.task.description = newValue,
-      validator: (value) => back.validateDescription(value!),
+      validator: (value) => back.validateDescription(value),
       decoration: InputDecoration(
         labelText: 'Description',
       ),
@@ -47,8 +49,8 @@ class TaskForm extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              _form.currentState!.validate();
-              _form.currentState!.save();
+              _form.currentState.validate();
+              _form.currentState.save();
               if (_back.isValid) {
                 _back.save();
                 Navigator.of(context).pop();

@@ -1,10 +1,12 @@
+// @dart=2.9
+
 import 'package:sckan_app/app/database/sqlite/connection.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/domain/interfaces/project_dao.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ProjectDAOImpl implements ProjectDAO {
-  late Database _db;
+  Database _db;
 
   @override
   Future<List<Project>> find() async {
@@ -12,6 +14,8 @@ class ProjectDAOImpl implements ProjectDAO {
     List<Map<String, dynamic>> result = await this._db.query('project');
     List<Project> projects = List.generate(result.length, (i) {
       var line = result[i];
+
+      print('list');
 
       return Project(
         id: line['id'],
@@ -21,11 +25,13 @@ class ProjectDAOImpl implements ProjectDAO {
       );
     });
 
+    print(projects);
+
     return projects;
   }
 
   @override
-  remove(int id) async {
+  remove(dynamic id) async {
     this._db = await Connection.get();
     this._db.rawDelete('DELETE FROM project WHERE id = ?;', [id]);
   }
@@ -35,12 +41,17 @@ class ProjectDAOImpl implements ProjectDAO {
     var sql;
     this._db = await Connection.get();
 
-    // ignore: unnecessary_null_comparison
+    print('project name: ${project.name}');
+    print('project desc: ${project.description}');
+    print('project clone: ${project.cloneLink}');
+
     if (project.id == null) {
       sql = '''
         INSERT INTO project (name, description, clone_link) 
         VALUES (?, ?, ?);
       ''';
+
+      print('came to here');
 
       this._db.rawInsert(
           sql, [project.name, project.description, project.cloneLink]);
@@ -66,7 +77,7 @@ class ProjectDAOImpl implements ProjectDAO {
   }
 
   @override
-  inactivate(int id) async {
+  inactivate(dynamic id) async {
     this._db = await Connection.get();
     this._db.rawUpdate("UPDATE project SET active = 'N' WHERE id = ?;", [id]);
   }

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/cupertino.dart';
 
 class TaskDetailsBack {
@@ -5,7 +7,7 @@ class TaskDetailsBack {
   var task;
 
   TaskDetailsBack(this.context) {
-    task = ModalRoute.of(context)!.settings.arguments;
+    task = ModalRoute.of(context).settings.arguments;
   }
 
   goToBack() {

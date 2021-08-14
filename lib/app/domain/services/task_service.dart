@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:get_it/get_it.dart';
 import 'package:sckan_app/app/domain/entities/task.dart';
 import 'package:sckan_app/app/domain/exception/domain_layer_exception.dart';
@@ -10,12 +12,12 @@ class TaskService {
     this._dao.save(task);
   }
 
-  remove(int id) {
+  remove(dynamic id) {
     this._dao.remove(id);
   }
 
-  find() {
-    this._dao.find();
+  Future<List<Task>> find() {
+    return this._dao.find();
   }
 
   validadeName(String name) {

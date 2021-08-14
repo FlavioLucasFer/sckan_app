@@ -1,9 +1,11 @@
+// @dart=2.9
+
 import 'package:path/path.dart';
 import 'package:sckan_app/app/database/sqlite/script.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Connection {
-  static dynamic _db;
+  static Database _db;
 
   static Future<Database> get() async {
     if (_db == null) {

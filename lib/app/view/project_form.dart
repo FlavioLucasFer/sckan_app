@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:sckan_app/app/view/project_form_back.dart';
 
@@ -8,7 +10,7 @@ class ProjectForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.project.name,
       onSaved: (newValue) => back.project.name = newValue,
-      validator: (value) => back.validateName(value!),
+      validator: (value) => back.validateName(value),
       decoration: InputDecoration(
         labelText: 'Name',
       ),
@@ -19,7 +21,7 @@ class ProjectForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.project.description,
       onSaved: (newValue) => back.project.description = newValue,
-      validator: (value) => back.validateDescription(value!),
+      validator: (value) => back.validateDescription(value),
       decoration: InputDecoration(
         labelText: 'Description',
       ),
@@ -30,12 +32,14 @@ class ProjectForm extends StatelessWidget {
     return TextFormField(
       initialValue: back.project.cloneLink,
       onSaved: (newValue) => back.project.cloneLink,
-      validator: (value) => back.validateCloneLink(value!),
+      validator: (value) => back.validateCloneLink(value),
       decoration: InputDecoration(
         labelText: 'Clone link',
       ),
     );
   }
+
+  void validator() => validator;
 
   Widget build(BuildContext context) {
     var _back = ProjectFormBack(context);
@@ -46,8 +50,8 @@ class ProjectForm extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              _form.currentState!.validate();
-              _form.currentState!.save();
+              _form.currentState.validate();
+              _form.currentState.save();
               if (_back.isValid) {
                 _back.save();
                 Navigator.of(context).pop();

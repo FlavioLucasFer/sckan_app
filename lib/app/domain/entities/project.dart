@@ -1,16 +1,18 @@
+// @dart=2.9
+
 class Project {
-  int id;
+  dynamic id;
   String name;
   String description;
   String cloneLink;
   String active = 'Y';
-  DateTime createdAt = DateTime.now();
-  DateTime updatedAt = DateTime.now();
+  // DateTime createdAt = DateTime.now();
+  // DateTime updatedAt = DateTime.now();
 
   Project({
-    this.id = -1,
-    this.name = '',
-    this.description = '',
-    this.cloneLink = '',
+    this.id,
+    this.name,
+    this.description,
+    this.cloneLink,
   });
 }
