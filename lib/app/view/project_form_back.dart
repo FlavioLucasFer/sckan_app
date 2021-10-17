@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sckan_app/app/domain/entities/project.dart';
 import 'package:sckan_app/app/domain/services/project_service.dart';
+import 'package:sckan_app/app/view/project_list_back.dart';
 
 class ProjectFormBack {
   BuildContext context;
@@ -20,8 +21,9 @@ class ProjectFormBack {
     project = (parameter == null) ? Project() : parameter;
   }
 
-  save() async {
+  save(BuildContext context) async {
     await _service.save(project);
+    Navigator.of(context).pop();
   }
 
   String validateName(String name) {

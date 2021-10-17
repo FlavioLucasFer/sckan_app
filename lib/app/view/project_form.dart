@@ -53,8 +53,7 @@ class ProjectForm extends StatelessWidget {
               _form.currentState.validate();
               _form.currentState.save();
               if (_back.isValid) {
-                _back.save();
-                Navigator.of(context).pop();
+                _back.save(context);
               }
             },
             icon: Icon(Icons.save),

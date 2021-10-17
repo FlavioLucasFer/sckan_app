@@ -19,8 +19,9 @@ class TaskFormBack {
     task = (parameter == null) ? Task() : parameter;
   }
 
-  save() async {
+  save(BuildContext context) async {
     await _service.save(task);
+    Navigator.of(context).pop();
   }
 
   String validateName(String name) {
